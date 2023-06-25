@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,27 @@ export class AppComponent {
   working = false;
   complete = false;
   strongPassword = false;
+  
+  @Input() name: string = '';
+
+  password: string = '';
+
+  show = false;
+
+  ngOnInit() {
+    this.password = 'password';
+  }
+
+  onClick() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.show = true;
+    } else {
+      this.password = 'password';
+      this.show = false;
+    }
+  }
+
 
   signupForm = new FormGroup({
     email: new FormControl(null, [Validators.email, Validators.required]),
